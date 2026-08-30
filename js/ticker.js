@@ -1,0 +1,2 @@
+// ticker.js
+function renderTicker(){ const items=allNews.slice(0,30); document.getElementById('ticker-track').innerHTML=[...items,...items].map(n=>`<div class="tk-item" onclick="clickWire(${n.id})"><div class="tk-dot" style="background:${n.cat.color}"></div>${n.title}${n.loc?`<span style="opacity:.35">· ${n.loc.isWorld&&n.loc.country?n.loc.country:n.loc.name}</span>`:''}</div>`).join(''); }
