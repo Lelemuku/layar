@@ -315,7 +315,13 @@ html, body {
 }
 
 /* ═══════════════════════════════════
-   SLOT IKLAN — STRIP ATAS TICKER (BARU, opsional)
+   SLOT IKLAN — STRIP ATAS TICKER
+   Ukuran DITETAPKAN (bukan auto/full-width-responsive) agar Google
+   tidak leluasa memilih rectangle besar di layar HP. Mengikuti pola
+   resmi "expandable width, fixed height" dari AdSense: lebar
+   menyesuaikan layar, tapi tinggi mengikuti ukuran iklan standar
+   per breakpoint (mobile banner 320x50 → tablet 468x60 → desktop
+   leaderboard 728x90).
 ═══════════════════════════════════ */
 #ad-strip {
   background: var(--surface);
@@ -331,6 +337,16 @@ html, body {
 #ad-strip:empty {
   min-height: 0;
   border-top: none;
+}
+#ad-strip .ad-strip-unit {
+  width: 320px;
+  height: 50px;
+}
+@media (min-width: 500px) {
+  #ad-strip .ad-strip-unit { width: 468px; height: 60px; }
+}
+@media (min-width: 800px) {
+  #ad-strip .ad-strip-unit { width: 728px; height: 90px; }
 }
 
 /* ═══════════════════════════════════
@@ -1043,12 +1059,10 @@ body::after {
      Statis, tinggi tetap, tidak menutupi konten.
 ═══════════════════════════════════ -->
 <div id="ad-strip">
-  <ins id="ad-strip-ins" class="adsbygoogle"
-       style="display:block;width:100%"
+  <ins id="ad-strip-ins" class="adsbygoogle ad-strip-unit"
+       style="display:inline-block"
        data-ad-client="ca-pub-3649077782201846"
-       data-ad-slot="2325042365"
-       data-ad-format="horizontal"
-       data-full-width-responsive="true"></ins>
+       data-ad-slot="2325042365"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
