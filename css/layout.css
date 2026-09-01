@@ -1,5 +1,20 @@
 /* layout.css - header, main, sidebar, map, ticker, ad-strip */
-#header { height:50px; background:var(--surface); border-bottom:1px solid var(--border2); display:flex; align-items:center; flex-shrink:0; z-index:1100; transition:background .3s,border-color .3s; }
+
+/* ═══════════════════════════════════════════════════════
+   FRAME TETAP: header & ticker dikunci di ujung layar,
+   independen dari resize AdSense. #main dikunci statis di
+   antara keduanya (top:50px = tinggi #header, bottom:28px =
+   tinggi #ticker), sehingga #map-wrap TIDAK PERNAH berubah
+   ukuran akibat iklan — Leaflet jadi tidak perlu invalidateSize()
+   lagi. #ad-strip diubah jadi elemen mengambang (fixed) tepat
+   di atas ticker, bukan lagi elemen yang mendorong tata letak.
+═══════════════════════════════════════════════════════ */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#header { position:fixed; top:0; left:0; right:0; height:50px; background:var(--surface); border-bottom:1px solid var(--border2); display:flex; align-items:center; flex-shrink:0; z-index:1100; transition:background .3s,border-color .3s; }
 #logo-wrap { display:flex; align-items:center; gap:9px; padding:0 16px; border-right:1px solid var(--border); height:100%; text-decoration:none; flex-shrink:0; }
 #logo-img { width:26px; height:26px; border-radius:5px; object-fit:cover; background:var(--surface2); }
 #logo-name { font-family:var(--font-head); font-size:15px; font-weight:700; color:var(--accent); letter-spacing:.5px; }
@@ -24,7 +39,12 @@
 #refresh-btn.spin svg { animation:iconSpin .8s linear infinite; }
 @keyframes iconSpin { to { transform:rotate(360deg); } }
 #clock { padding:0 12px; border-left:1px solid var(--border); height:100%; display:flex; align-items:center; font-family:var(--font-mono); font-size:10px; color:var(--text3); white-space:nowrap; min-width:142px; flex-shrink:0; }
-#main { display:flex; flex:1; overflow:hidden; min-height:0; position:relative; }
+
+/* #main dikunci fixed di antara header (50px) dan ticker (28px).
+   Sengaja TIDAK pakai flex:1 lagi — supaya ukurannya tidak lagi
+   terikat pada tinggi #ad-strip yang bisa berubah kapan saja. */
+#main { position:fixed; top:50px; bottom:28px; left:0; right:0; display:flex; overflow:hidden; min-height:0; }
+
 #sidebar { width:200px; background:var(--surface); border-right:1px solid var(--border); display:flex; flex-direction:column; flex-shrink:0; z-index:500; overflow-y:auto; transition:background .3s,border-color .3s; }
 #sidebar::-webkit-scrollbar { width:3px; }
 #sidebar::-webkit-scrollbar-thumb { background:var(--border2); }
@@ -56,7 +76,8 @@
 #map-chips { position:absolute; top:10px; left:48px; z-index:800; display:flex; flex-direction:column; gap:6px; pointer-events:none; align-items:flex-end; }
 .m-chip { background:var(--overlay); border:1px solid var(--border2); border-radius:5px; padding:4px 9px; font-family:var(--font-mono); font-size:9px; color:var(--text2); backdrop-filter:blur(8px); letter-spacing:.5px; transition:background .3s; }
 #coord-chip { position:absolute; top:38px; left:48px; z-index:800; pointer-events:none; }
-#ticker { height:28px; background:var(--surface); border-top:1px solid var(--border); display:flex; align-items:center; overflow:hidden; flex-shrink:0; z-index:1000; transition:background .3s,border-color .3s; }
+
+#ticker { position:fixed; bottom:0; left:0; right:0; height:28px; background:var(--surface); border-top:1px solid var(--border); display:flex; align-items:center; overflow:hidden; flex-shrink:0; z-index:1000; transition:background .3s,border-color .3s; }
 #ticker-badge { display:flex; align-items:center; gap:5px; padding:0 11px; border-right:1px solid var(--border); height:100%; font-family:var(--font-mono); font-size:9px; color:var(--accent); letter-spacing:2px; flex-shrink:0; white-space:nowrap; }
 #ticker-wrap { flex:1; overflow:hidden; height:100%; position:relative; }
 #ticker-track { display:flex; align-items:center; white-space:nowrap; height:100%; position:absolute; animation:tickerMove 90s linear infinite; }
@@ -65,8 +86,12 @@
 .tk-item { display:inline-flex; align-items:center; gap:6px; padding:0 18px; font-size:11px; color:var(--text2); border-right:1px solid var(--border); height:100%; transition:color .2s; }
 .tk-item:hover { color:var(--text); }
 .tk-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
-#ad-strip { position:relative; background:var(--surface); border-top:1px solid var(--border); display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0; min-height:0; transition:background .3s,border-color .3s; }
-#ad-strip:empty { min-height:0; border-top:none; }
+
+/* #ad-strip sekarang MENGAMBANG tepat di atas ticker (fixed),
+   bukan lagi sibling di flex-flow — jadi tidak pernah lagi
+   mendorong/mengubah ukuran #main atau #map-wrap. */
+#ad-strip { position:fixed; left:0; right:0; bottom:28px; background:var(--surface); border-top:1px solid var(--border); display:flex; align-items:center; justify-content:center; overflow:hidden; z-index:999; box-shadow:0 -3px 14px rgba(0,0,0,.28); transition:background .3s,border-color .3s; }
+#ad-strip:empty { display:none; }
 #ad-strip.ad-hidden { display:none !important; }
 #ad-strip .ad-strip-unit { width:320px; height:50px; }
 @media (min-width:500px) { #ad-strip .ad-strip-unit { width:468px; height:60px; } }
