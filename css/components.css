@@ -45,8 +45,6 @@
 .wi-loc { background:rgba(128,128,128,.08); padding:1px 5px; border-radius:3px; }
 #ad-sidebar-slot { margin:10px 12px; padding:8px; border:1px solid var(--border); border-radius:8px; background:var(--surface2); transition:background .3s,border-color .3s; }
 .ad-slot-label { font-family:var(--font-mono); font-size:8px; letter-spacing:2px; color:var(--text3); text-transform:uppercase; text-align:center; margin-bottom:6px; }
-.pu-ad-slot { margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.08); text-align:center; }
-.pu-ad-label { font-family:var(--font-mono); font-size:8px; letter-spacing:2px; color:var(--text3); text-transform:uppercase; margin-bottom:6px; }
 #toast-zone { position:absolute; top:10px; left:50%; transform:translateX(-50%); z-index:3000; display:flex; flex-direction:column; gap:5px; pointer-events:none; min-width:260px; }
 .toast { background:var(--surface2); border:1px solid var(--border2); border-radius:7px; padding:8px 13px; font-size:12px; color:var(--text); display:flex; align-items:center; gap:7px; box-shadow:0 4px 20px var(--shadow); animation:toastIn .25s ease; pointer-events:auto; }
 @keyframes toastIn { from{opacity:0;transform:translateY(-7px)} to{opacity:1;transform:translateY(0)} }
