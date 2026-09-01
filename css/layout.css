@@ -1,14 +1,6 @@
 /* layout.css - header, main, sidebar, map, ticker, ad-strip */
 
-/* ═══════════════════════════════════════════════════════
-   FRAME TETAP: header & ticker dikunci di ujung layar,
-   independen dari resize AdSense. #main dikunci statis di
-   antara keduanya (top:50px = tinggi #header, bottom:28px =
-   tinggi #ticker), sehingga #map-wrap TIDAK PERNAH berubah
-   ukuran akibat iklan — Leaflet jadi tidak perlu invalidateSize()
-   lagi. #ad-strip diubah jadi elemen mengambang (fixed) tepat
-   di atas ticker, bukan lagi elemen yang mendorong tata letak.
-═══════════════════════════════════════════════════════ */
+
 html, body {
   height: 100%;
   overflow: hidden;
