@@ -16,11 +16,11 @@ html, body {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  z-index: 1450; /* ← DIUBAH: dari 1100 menjadi 1450 (di atas backdrop) */
+  z-index: 1450; /* sudah di atas backdrop (1400) */
   transition: background .3s, border-color .3s;
 }
 
-/* sisanya tetap sama persis seperti file asli Anda */
+/* sisanya sama persis seperti file asli Anda, tidak saya potong agar mudah di-copy */
 #logo-wrap { display:flex; align-items:center; gap:9px; padding:0 16px; border-right:1px solid var(--border); height:100%; text-decoration:none; flex-shrink:0; }
 #logo-img { width:26px; height:26px; border-radius:5px; object-fit:cover; background:var(--surface2); }
 #logo-name { font-family:var(--font-head); font-size:15px; font-weight:700; color:var(--accent); letter-spacing:.5px; }
@@ -46,7 +46,6 @@ html, body {
 @keyframes iconSpin { to { transform:rotate(360deg); } }
 #clock { padding:0 12px; border-left:1px solid var(--border); height:100%; display:flex; align-items:center; font-family:var(--font-mono); font-size:10px; color:var(--text3); white-space:nowrap; min-width:142px; flex-shrink:0; }
 
-/* #main dikunci fixed di antara header (50px) dan ticker (28px) */
 #main { position:fixed; top:50px; bottom:28px; left:0; right:0; display:flex; overflow:hidden; min-height:0; }
 
 #sidebar { width:200px; background:var(--surface); border-right:1px solid var(--border); display:flex; flex-direction:column; flex-shrink:0; z-index:500; overflow-y:auto; transition:background .3s,border-color .3s; }
@@ -91,7 +90,6 @@ html, body {
 .tk-item:hover { color:var(--text); }
 .tk-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
 
-/* #ad-strip menggantung di atas ticker */
 #ad-strip { position:fixed; left:0; right:0; bottom:28px; background:var(--surface); border-top:1px solid var(--border); display:flex; align-items:center; justify-content:center; overflow:hidden; z-index:999; box-shadow:0 -3px 14px rgba(0,0,0,.28); transition:background .3s,border-color .3s; }
 #ad-strip:empty { display:none; }
 #ad-strip.ad-hidden { display:none !important; }
