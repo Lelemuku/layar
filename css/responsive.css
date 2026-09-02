@@ -28,7 +28,16 @@
   #logo-name { font-size:13px; }
   #wire-panel { height:80vh; max-height:80vh; }
 }
-#mob-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:1400; backdrop-filter:blur(3px); opacity:0; transition:opacity .25s; }
+#mob-backdrop {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:1400;
+  /* backdrop-filter: blur(3px); ← DIHAPUS / DIKOMENTARI, hilangkan efek blur */
+  opacity:0;
+  transition:opacity .25s;
+}
 #mob-backdrop.vis { opacity:1; }
 #fab-filter, #fab-wire { display:none; position:fixed; z-index:1200; align-items:center; justify-content:center; border:none; cursor:pointer; border-radius:28px; font-family:var(--font-mono); font-size:11px; letter-spacing:1px; gap:6px; padding:0 14px; height:44px; transition:transform .2s,box-shadow .2s,opacity .2s; box-shadow:0 4px 16px rgba(0,0,0,.4); white-space:nowrap; bottom:38px; }
 #fab-filter:hover, #fab-wire:hover { transform:translateY(-2px); }
